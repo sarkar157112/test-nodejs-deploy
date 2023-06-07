@@ -1,0 +1,22 @@
+version: 0.2
+
+phases:
+  install: 
+    runtime-versions:
+      nodejs: 18
+  build:
+    commands:
+      - echo "Package & Dependicies are getting installed"
+      - npm -f install
+      - echo "Packages have been installed"
+      - echo "Storing Build Artifact to the Location"
+      - tar -czf deploy.tar.gz *
+artifacts:
+  files: 
+    - deploy.tar.gz
+    - uat-api_setup.sh
+    - appspec.yml 
+  discard-paths: yes
+  type: zip
+  paths:
+    - '*'
